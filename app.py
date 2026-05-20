@@ -17,7 +17,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("🌾 Wheat Crop Digital Twin")
+st.title("🌾 Wheat Crop Digital Twin - EfficientNetB0")
 
 # ---------------------------------------------------
 # SENSOR DATA (DUMMY FOR NOW)
@@ -85,15 +85,19 @@ transform = transforms.Compose([
 ])
 
 # ---------------------------------------------------
-# LOAD MODEL ONLY ONCE (IMPORTANT)
+# LOAD EFFICIENTNETB0 MODEL ONLY ONCE
 # ---------------------------------------------------
 
 @st.cache_resource
 def load_model():
 
-    model = models.resnet50(weights=None)
+    model = models.efficientnet_b0(weights=None)
 
-    model.fc = nn.Linear(model.fc.in_features, 11)
+    # Replace classifier for 11 classes
+    model.classifier[1] = nn.Linear(
+        model.classifier[1].in_features,
+        11
+    )
 
     model.load_state_dict(
         torch.load(
@@ -136,7 +140,7 @@ confidence = probabilities[0][prediction.item()].item() * 100
 # SHOW RESULTS
 # ---------------------------------------------------
 
-st.subheader(" Disease Prediction")
+st.subheader("🧠 Disease Prediction")
 
 st.success(f"Prediction: {predicted_class}")
 
@@ -154,7 +158,7 @@ if humidity > 80 and predicted_class != "Healthy":
 elif humidity > 65:
     risk = "MEDIUM"
 
-st.subheader("Disease Spread Risk")
+st.subheader("⚠ Disease Spread Risk")
 
 if risk == "HIGH":
     st.error("HIGH RISK")
@@ -169,7 +173,7 @@ else:
 # SYSTEM STATUS
 # ---------------------------------------------------
 
-
+st.subheader("📊 System Status")
 
 st.write(f"Current Image: {random_image}")
 st.write(f"Temperature: {temperature} °C")
