@@ -17,7 +17,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("🌾 Wheat Crop Digital Twin - EfficientNetB0")
+st.title("Wheat Crop Digital Twin - EfficientNetB0")
 
 # ---------------------------------------------------
 # SENSOR DATA (DUMMY FOR NOW)
@@ -140,7 +140,7 @@ confidence = probabilities[0][prediction.item()].item() * 100
 # SHOW RESULTS
 # ---------------------------------------------------
 
-st.subheader("🧠 Disease Prediction")
+st.subheader("Disease Prediction")
 
 st.success(f"Prediction: {predicted_class}")
 
@@ -173,7 +173,7 @@ else:
 # SYSTEM STATUS
 # ---------------------------------------------------
 
-st.subheader("📊 System Status")
+st.subheader(" System Status")
 
 st.write(f"Current Image: {random_image}")
 st.write(f"Temperature: {temperature} °C")
