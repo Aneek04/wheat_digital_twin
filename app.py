@@ -97,7 +97,7 @@ def load_model():
 
     model.load_state_dict(
         torch.load(
-            "models/resnet50.pth",
+            "models/efficientnetb0.pth",
             map_location="cpu"
         )
     )
