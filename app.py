@@ -136,7 +136,7 @@ confidence = probabilities[0][prediction.item()].item() * 100
 # SHOW RESULTS
 # ---------------------------------------------------
 
-st.subheader("🧠 Disease Prediction")
+st.subheader(" Disease Prediction")
 
 st.success(f"Prediction: {predicted_class}")
 
@@ -154,7 +154,7 @@ if humidity > 80 and predicted_class != "Healthy":
 elif humidity > 65:
     risk = "MEDIUM"
 
-st.subheader("⚠ Disease Spread Risk")
+st.subheader("Disease Spread Risk")
 
 if risk == "HIGH":
     st.error("HIGH RISK")
@@ -169,7 +169,7 @@ else:
 # SYSTEM STATUS
 # ---------------------------------------------------
 
-st.subheader("📊 Digital Twin Status")
+
 
 st.write(f"Current Image: {random_image}")
 st.write(f"Temperature: {temperature} °C")
